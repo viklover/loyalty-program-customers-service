@@ -1,0 +1,104 @@
+openapi: '3.0.3'
+info:
+  version: 0.0.1
+  title: Customers Service
+servers:
+  - url: http://localhost:8002/api/v1
+    description: local
+
+paths:
+  /customers/register:
+    post:
+      tags:
+        - "Customers"
+      summary: "Register a new customer"
+      operationId: createCustomer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateCustomerDto'
+      responses:
+        "200":
+          description: "Success"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerDto'
+
+  /customers:
+    get:
+      tags:
+        - "Customers"
+      summary: "Get a customers list"
+      operationId: findAll
+      parameters:
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/offset'
+      responses:
+        "200":
+          description: "Success"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CustomerDto'
+
+components:
+  schemas:
+    CreateCustomerDto:
+      type: object
+      required:
+        - firstName
+        - lastName
+      properties:
+        firstName:
+          type: string
+          example: Mihail
+          maxLength: 15
+        lastName:
+          type: string
+          example: Vorobyev
+          maxLength: 25
+        birthDay:
+          type: string
+          example: 2007-12-03T10:15:30
+          nullable: true
+    CustomerDto:
+      type: object
+      required:
+        - firstName
+        - lastName
+      properties:
+        firstName:
+          type: string
+          example: Mihail
+          maxLength: 15
+        lastName:
+          type: string
+          example: Vorobyev
+          maxLength: 25
+        birthDay:
+          type: string
+          example: 2007-12-03T10:15:30
+          nullable: true
+        createdAt:
+          type: string
+          example: 2023-12-08 12:30:06.292803
+  parameters:
+    limit:
+      name: limit
+      in: query
+      required: false
+      example: 50
+      schema:
+        type: integer
+    offset:
+      name: offset
+      in: query
+      required: false
+      example: 0
+      schema:
+        type: integer
