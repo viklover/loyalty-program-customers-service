@@ -1,7 +1,5 @@
 package ru.viklover.customers.api.v1.service
 
-import java.sql.Date
-
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
@@ -14,7 +12,6 @@ import ru.viklover.customers.repository.Customer
 import ru.viklover.customers.repository.CustomersRepository
 import ru.viklover.customers.contracts.v1.models.CustomerDto
 import ru.viklover.customers.contracts.v1.models.CreateCustomerDto
-import java.time.LocalDate
 import java.time.LocalDateTime
 
 @Service

@@ -8,5 +8,5 @@ import ru.viklover.customers.contracts.v1.models.CreateCustomerDto
 interface CustomersService {
     suspend fun createCustomer(dto: CreateCustomerDto): CustomerDto
     suspend fun findById(id: Long): CustomerDto
-    fun findAllBy(limit: Int?, offset: Int?): Flow<CustomerDto>
+    fun findAllBy(limit: Int? = 50, offset: Int? = 0): Flow<CustomerDto>
 }
